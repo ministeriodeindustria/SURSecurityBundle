@@ -1,0 +1,24 @@
+services:
+    sur_user_ws_provider:
+        class: SUR\SecurityBundle\Security\User\SURUserWebService
+        arguments: ['@service_container']
+        
+    sur_user_provider:
+        class: SUR\SecurityBundle\Security\User\SURUserProvider
+        arguments: ["@sur_user_ws_provider"]
+
+    sur.security.authentication.provider:
+        class: SUR\SecurityBundle\Security\Authentication\Provider\SURProvider
+        arguments: ["@sur_user_provider"]
+
+    sur.security.authentication.listener:
+        class: SUR\SecurityBundle\Security\Firewall\SURListener
+        arguments: ["@security.context", "@security.authentication.manager"]
+
+    controller_voter:
+        class: SUR\SecurityBundle\Security\Authorization\Voter\ControllerVoter
+        public: false
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: security.voter }
+            

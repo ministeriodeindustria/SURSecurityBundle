@@ -1,0 +1,30 @@
+{
+    "name": "ministeriodeindustria/sur-security-bundle",
+    "type": "symfony-bundle",
+    "description": "Bundle de seguridad para integracion con el SUR",
+    "keywords": ["SUR", "bundle"],
+    "homepage": "http://github.com/ministeriodeindustria/SURSecurityBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alejandro Sanchez",
+            "email": "sanchezalejandro86@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "besimple/soap-bundle" : "dev-master",
+		"besimple/soap-common" : "dev-master",
+		"ass/xmlsecurity" : "dev-master",
+		"besimple/soap-client" : "dev-master",
+		"knplabs/knp-menu-bundle": "dev-master"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "SUR\\SecurityBundle\\SURSecurityBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "SUR/SecurityBundle"
+}
