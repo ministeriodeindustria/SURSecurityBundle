@@ -11,9 +11,9 @@ Pasos para configurar el SURSecurityBundle:
 2- Agregarle:  <code>"minimum-stability": "dev",</code>
 
 3- En AppKernel agregar: <br />
-		```
-		new Knp\Bundle\MenuBundle\KnpMenuBundle(), <br />
-		new SUR\SecurityBundle\SURSecurityBundle(), <br />
+		```php
+		new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+		new SUR\SecurityBundle\SURSecurityBundle(),
 		```
 		
 4- En config.yml agregar: <br />
