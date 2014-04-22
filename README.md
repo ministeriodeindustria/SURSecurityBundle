@@ -15,11 +15,11 @@ Pasos para configurar el SURSecurityBundle:
 		new SUR\SecurityBundle\SURSecurityBundle(), <br /></code>
 		
 4- En config.yml agregar: <br />
-	<code>- { resource: '@SURSecurityBundle/Resources/config/security.yml' }  <br /></code>
+	<code>- { resource: '@SURSecurityBundle/Resources/config/security.yml' }</code><br />
 	.....<br />
 	<code># SUR Configuration<br />
 	sur_security:<br />
-		login_url: "%login_url%"<br />
+		login_url: "%login_url%"\n
 		ws_url:    "%ws_url%"<br /></code>
 		
 5- En parameters.yml agregar:<br />
