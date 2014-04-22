@@ -6,9 +6,9 @@ Bundle de integracion SUR con aplicaciones Symfony
 Pasos para configurar el SURSecurityBundle:
 
 1- Actualizar el composer.json del proyecto con: <br />
-        "ministeriodeindustria": "sur-security-bundle"
+        <code>"ministeriodeindustria": "sur-security-bundle"</code>
 		
-2- Agregarle:  "minimum-stability": "dev",
+2- Agregarle:  <quote>"minimum-stability": "dev",</quote>
 
 3- En AppKernel agregar: <br />
 		new Knp\Bundle\MenuBundle\KnpMenuBundle(), <br />
