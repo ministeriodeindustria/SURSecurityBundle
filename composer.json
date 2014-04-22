@@ -23,7 +23,7 @@
         "symfony/framework-bundle": ">=2.1,<2.2-dev"
     },
     "autoload": {
-        "psr-0": { "SUR\\SecurityBundle\\SURSecurityBundle": "" }
+        "psr-0": { "SUR\\SecurityBundle": "" }
     },
     "minimum-stability": "dev",
     "target-dir": "SUR/SecurityBundle"

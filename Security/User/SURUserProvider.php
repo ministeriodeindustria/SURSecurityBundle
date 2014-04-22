@@ -11,31 +11,31 @@ use Doctrine\ORM\EntityManager;
 class SURUserProvider implements UserProviderInterface
 {
 	private $authService;
-	
+
 	public function __construct($authService)
 	{
 		$this->authService = $authService;
 	}
-	
+
 	public function loadUserByToken($token)
 	{
 		//FIXME Invocar el WS de SUR
- 		$user = $this->authService->getUserByToken($token);
+ 		$respuesta = $this->authService->getUserByToken($token);
 // 		$user = true;
-		
+
 		//FIXME tmp
-		if(isset($user->usuIntraUsuario)){
+		if($respuesta->status==$respuesta->OK){
 			$roles = array('INICIO');
-			$user = new SURUser($user->usuIntraUsuario, $roles, $user->menu);
+			$user = new SURUser($respuesta->user->usuIntraUsuario, $roles, $respuesta->user->menu);
 			return $user;
 		}
 
 		return false;
 	}
-	
+
 	public function loadUserByUsername($username){}
 	public function refreshUser(UserInterface $user){ return $user; }
-	
+
 	public function supportsClass($class)
 	{
 		return $class === 'Acme\DemoBundle\Security\User\SURUser';
