@@ -6,7 +6,7 @@ Bundle de integracion SUR con aplicaciones Symfony
 Pasos para configurar el SURSecurityBundle:
 
 1- Actualizar el composer.json del proyecto con: <br />
-	"ministeriodeindustria": "sur-security-bundle"
+        "ministeriodeindustria": "sur-security-bundle"
 		
 2- Agregarle:  "minimum-stability": "dev",
 
