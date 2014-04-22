@@ -8,31 +8,31 @@ Pasos para configurar el SURSecurityBundle:
 1- Actualizar el composer.json del proyecto con: <br />
         <code>"ministeriodeindustria": "sur-security-bundle"</code>
 		
-2- Agregarle:  <quote>"minimum-stability": "dev",</quote>
+2- Agregarle:  <code>"minimum-stability": "dev",</code>
 
 3- En AppKernel agregar: <br />
-		new Knp\Bundle\MenuBundle\KnpMenuBundle(), <br />
-		new SUR\SecurityBundle\SURSecurityBundle(), <br />
+		<code>new Knp\Bundle\MenuBundle\KnpMenuBundle(), <br />
+		new SUR\SecurityBundle\SURSecurityBundle(), <br /></code>
 		
 4- En config.yml agregar: <br />
-	- { resource: '@SURSecurityBundle/Resources/config/security.yml' }  <br />
+	<code>- { resource: '@SURSecurityBundle/Resources/config/security.yml' }  <br /></code>
 	.....<br />
-	# SUR Configuration<br />
+	<code># SUR Configuration<br />
 	sur_security:<br />
 		login_url: "%login_url%"<br />
-		ws_url:    "%ws_url%"<br />
+		ws_url:    "%ws_url%"<br /></code>
 		
 5- En parameters.yml agregar:<br />
-	login_url: 'http://localhost/sur/intranet/index.php'<br />
-    	ws_url: 'http://localhost/industriaws/web/app_dev.php/ws/SURAuthentication'<br />
+	<code>login_url: 'http://localhost/sur/intranet/index.php'<br />
+    	ws_url: 'http://localhost/industriaws/web/app_dev.php/ws/SURAuthentication'<br /></code>
     
 6- En routing.yml agregar:<br />
-    sur_security:<br />
+    <code>sur_security:<br />
 		  resource: "@SURSecurityBundle/Controller/"<br />
 		  type:     annotation<br />
-		  prefix:   /<br />
+		  prefix:   /<br /></code>
 		  
 7- El layout de la aplicación debe extender: <br />
-	{% extends "SURSecurityBundle::layout.html.twig" %}<br />
+	<code>{% extends "SURSecurityBundle::layout.html.twig" %}<br /></code>
 	
-8- Ponerle el alias "_inicio" a la pagina principal
+8- Ponerle el alias <code>"_inicio"</code> a la pagina principal
