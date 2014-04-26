@@ -12,8 +12,6 @@ class Builder extends ContainerAware
     {
     	$usermenu = $this->container->get('security.context')->getToken()->getUser()->getMenu();
 
-
-
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav');
 
@@ -21,14 +19,13 @@ class Builder extends ContainerAware
 
 	 	$this->addMenu($usermenu, $menu);
 
-//		$menu["ABMs"]->addChild("Menu 1", array('route' => '_menu1'));
- //       $menu["ABMs"]->addChild("Menu 2", array())->setAttribute('dropdown', true)->setAttribute('class', 'has-sub');
-//		$menu["ABMs"]["Menu 2"]->addChild("Menu 2.1", array('route' => '_menu2'));
-
 		return $menu;
     }
 
     private function addMenu($usermenu, &$menu){
+    	if(!isset($usermenu->item)){
+    		return;
+    	}    	
     	if(!is_array($usermenu->item)){
     		$usermenu->item = array($usermenu->item);
     	}
@@ -48,13 +45,6 @@ class Builder extends ContainerAware
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav pull-right');
 
-    	/*
-    	You probably want to show user specific information such as the username here. That's possible! Use any of the below methods to do this.
-
-    	if($this->container->get('security.context')->isGranted(array('ROLE_ADMIN', 'ROLE_USER'))) {} // Check if the visitor has any authenticated roles
-    	$username = $this->container->get('security.context')->getToken()->getUser()->getUsername(); // Get username of the current logged in user
-
-    	*/
 		$menu->addChild('User', array('label' => 'Hi visitor'))
 			->setAttribute('dropdown', true)
 			->setAttribute('icon', 'icon-user');
