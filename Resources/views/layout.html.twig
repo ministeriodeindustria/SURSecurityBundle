@@ -39,6 +39,10 @@
 				min-height: 200px;
 				margin: 0px auto;
 			}
+			#user_info{
+				text-align: right;
+				padding: 0px 5px 5px 0px;
+			}
     	</style>
         {% endblock %}
 
@@ -55,6 +59,9 @@
           <div id="container">
             <header>
               {% block body_container_header %}
+              	{% block user_info %}
+              		<div id="user_info">{{ app.user.username }} | <a href="{{ path("_logout") }}">Salir</a></div>
+              	{% endblock %}
 	              {% block menu %}
 		            <div id="cssmenu">
 					{{ knp_menu_render('SURSecurityBundle:Builder:mainMenu') }}
