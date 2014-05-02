@@ -17,7 +17,7 @@ class Builder extends ContainerAware
 
     	$menu->addChild('Inicio', array('route' => '_inicio'));
 
-	 	$this->addMenu($token->getUser()->getMenu(), $menu, $token->getAccessStrategy());
+	 	$this->addMenu($token->getUser()->getMenu(), $menu, $token->getUser()->getAccessStrategy());
 
 		return $menu;
     }
@@ -37,7 +37,7 @@ class Builder extends ContainerAware
     			}
     		}else{
     			$menu->addChild($m->nombre, array())->setAttribute('class', 'has-sub');
-		 		$this->addMenu($m->hijos, $menu[$m->nombre]);
+		 		$this->addMenu($m->hijos, $menu[$m->nombre], $accessStrategy);
 		 		
 		 		//Si el menu quedo vacio, lo elimino
 		 		if(sizeof($menu[$m->nombre]) == 0){
@@ -45,20 +45,5 @@ class Builder extends ContainerAware
 		 		}
     		}
     	}
-    }
-
-    public function userMenu(FactoryInterface $factory, array $options)
-    {
-    	$menu = $factory->createItem('root');
-    	$menu->setChildrenAttribute('class', 'nav pull-right');
-
-		$menu->addChild('User', array('label' => 'Hi visitor'))
-			->setAttribute('dropdown', true)
-			->setAttribute('icon', 'icon-user');
-
-		$menu['User']->addChild('Edit profile', array('route' => 'acme_hello_profile'))
-			->setAttribute('icon', 'icon-edit');
-
-        return $menu;
     }
 }

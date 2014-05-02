@@ -24,7 +24,8 @@ class SURListener implements ListenerInterface
 	{
 		$request = $event->getRequest();
 
-		if(!$request->query->has("token") /*|| $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY')*/){
+		if(!$request->query->has("token")  /*|| 
+			($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))*/){
 			return;
 		}
 		

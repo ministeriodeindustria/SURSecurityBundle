@@ -2,13 +2,13 @@
 namespace SUR\SecurityBundle\Security\Authentication\Token;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
+use SUR\SecurityBundle\Security\Helper\DefaultAccessStrategy;
 
 class SURUserToken extends AbstractToken{
 
 	private $tokenKey;
-	private $accessStrategy;
 	
-	public function __construct($user, $tokenKey, array $roles = array(), $accessStrategy)
+	public function __construct($user, $tokenKey, array $roles = array())
 	{
 		parent::__construct($roles);
 
@@ -17,8 +17,6 @@ class SURUserToken extends AbstractToken{
 		
 		// If the user has roles, consider it authenticated
 		$this->setAuthenticated(count($roles) > 0);
-		
-		$this->accessStrategy = $accessStrategy;
 	}
 
 	public function getCredentials()
