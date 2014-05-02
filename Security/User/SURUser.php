@@ -3,18 +3,22 @@ namespace SUR\SecurityBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
+use SUR\SecurityBundle\Security\Helper\DefaultAccessStrategy;
 
 class SURUser implements UserInterface, EquatableInterface
 {
 	private $username;
 	private $roles;
 	private $menu;
-
-	public function __construct($username, array $roles, $menu)
+	private $accessStrategy;
+	
+	public function __construct($username, array $roles, $menu, $accessStrategy = NULL)
 	{
 		$this->username = $username;
 		$this->roles = $roles;
 		$this->menu = $menu;
+		
+		$this->accessStrategy = $accessStrategy === NULL ? new DefaultAccessStrategy() : $accessStrategy;
 	}
 
 	public function getRoles()
@@ -50,5 +54,14 @@ class SURUser implements UserInterface, EquatableInterface
 		}
 
 		return true;
+	}
+	
+
+	public function setAccessStrategy($accessStrategy){
+		$this->accessStrategy = $accessStrategy;
+	}
+	
+	public function getAccessStrategy(){
+		return $this->accessStrategy;
 	}
 }

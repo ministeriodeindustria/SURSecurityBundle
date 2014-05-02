@@ -10,19 +10,19 @@ class Builder extends ContainerAware
 {
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-    	$usermenu = $this->container->get('security.context')->getToken()->getUser()->getMenu();
-
+    	$token = $this->container->get('security.context')->getToken();
+    	
     	$menu = $factory->createItem('root');
     	$menu->setChildrenAttribute('class', 'nav');
 
     	$menu->addChild('Inicio', array('route' => '_inicio'));
 
-	 	$this->addMenu($usermenu, $menu);
+	 	$this->addMenu($token->getUser()->getMenu(), $menu, $token->getAccessStrategy());
 
 		return $menu;
     }
 
-    private function addMenu($usermenu, &$menu){
+    private function addMenu($usermenu, &$menu, $accessStrategy){
     	if(!isset($usermenu->item)){
     		return;
     	}    	
@@ -32,10 +32,17 @@ class Builder extends ContainerAware
 
     	foreach ($usermenu->item as $m){
     		if(empty($m->hijos->item)){
-    			$menu->addChild($m->nombre, array('route' => $m->archivo));
+    			if($accessStrategy->hasAccess($m->archivo)){
+	    			$menu->addChild($m->nombre, array('route' => $m->archivo));
+    			}
     		}else{
     			$menu->addChild($m->nombre, array())->setAttribute('class', 'has-sub');
 		 		$this->addMenu($m->hijos, $menu[$m->nombre]);
+		 		
+		 		//Si el menu quedo vacio, lo elimino
+		 		if(sizeof($menu[$m->nombre]) == 0){
+		 			$menu->removeChild($m->nombre);
+		 		}
     		}
     	}
     }

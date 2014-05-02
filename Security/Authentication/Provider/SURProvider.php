@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use SUR\SecurityBundle\Security\Authentication\Token\SURUserToken;
 use SUR\SecurityBundle\Security\User\SURUserProvider;
+use SUR\SecurityBundle\Security\Helper\DefaultAccessStrategy;
 
 class SURProvider implements AuthenticationProviderInterface
 {
@@ -31,7 +32,7 @@ class SURProvider implements AuthenticationProviderInterface
 		}
 // 		$user = $this->userProvider->loadUserByUsername($username);
 		
-		$authenticatedToken = new SURUserToken($user, $token, $user->getRoles());
+		$authenticatedToken = new SURUserToken($user, $token, $user->getRoles(), new DefaultAccessStrategy());
 		return $authenticatedToken;
 
 		throw new AuthenticationException('Fallo la autenticacion con SUR.');

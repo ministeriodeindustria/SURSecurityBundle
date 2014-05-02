@@ -21,11 +21,11 @@ class SURUserProvider implements UserProviderInterface
 	{
 		//FIXME Invocar el WS de SUR
  		$respuesta = $this->authService->getUserByToken($token);
-// 		$user = true;
 
-		//FIXME tmp
 		if($respuesta->status==$respuesta->OK){
-			$roles = array('INICIO');
+	 		//TODO obtener los Roles del Usuario
+	 		//TODO llenar el usuario con todos los datos del WS
+			$roles = array('_inicio');
 			$user = new SURUser($respuesta->user->usuIntraUsuario, $roles, $respuesta->user->menu);
 			return $user;
 		}
