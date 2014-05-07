@@ -23,10 +23,12 @@ class SURUserProvider implements UserProviderInterface
  		$respuesta = $this->authService->getUserByToken($token);
 
 		if($respuesta->status==$respuesta->OK){
+
+			$roles = $respuesta->user->privilegios;
 	 		//TODO obtener los Roles del Usuario
 	 		//TODO llenar el usuario con todos los datos del WS
-			$roles = array('_inicio');
-			$user = new SURUser($respuesta->user->usuIntraUsuario, $roles, $respuesta->user->menu);
+			$roles[] = '_inicio';
+			$user = new SURUser($respuesta->user, $roles, $respuesta->user->menu);
 			return $user;
 		}
 
