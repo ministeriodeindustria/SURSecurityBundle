@@ -9,12 +9,15 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use SUR\SecurityBundle\Security\Authentication\Token\SURUserToken;
 
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+
 class SURListener implements ListenerInterface
 {
 	protected $securityContext;
 	protected $authenticationManager;
+	protected $container;
 
-	public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager)
+	public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager,Container $container)
 	{
 		$this->securityContext = $securityContext;
 		$this->authenticationManager = $authenticationManager;
@@ -26,7 +29,7 @@ class SURListener implements ListenerInterface
 		$request = $event->getRequest();
 
 
-		if(!$request->query->has("token")  || 
+		if(!$request->query->has("token")  ||
 			($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))){
 
 			return;
