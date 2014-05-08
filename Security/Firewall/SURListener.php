@@ -30,20 +30,21 @@ class SURListener implements ListenerInterface
 
 		try {
 
-			$authToken = $this->authenticationManager->authenticate($token);
+
 
 		if(!$request->query->has("token")  ||
 			($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))){
 
-			if ($authToken->getUser()->sistemaId != $this->container->getParameter('sistemaId'))
+			if ($this->securityContext->getToken()->getUser()->sistemaId != $this->container->getParameter('sistemaId'))
 				throw new AuthenticationException();
 
 			return;
 		}
 
+
+
 		$token = new SURUserToken("ANONIMO", $request->query->get("token"));
-
-
+		$authToken = $this->authenticationManager->authenticate($token);
 
 			$this->securityContext->setToken($authToken);
 
