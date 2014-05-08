@@ -28,6 +28,10 @@ class Configuration implements ConfigurationInterface
 						        		->isRequired()
 						        		->cannotBeEmpty()
 						        	->end()
+						        	->scalarNode('sistema_id')
+						        	->isRequired()
+						        	->cannotBeEmpty()
+						        	->end()
 						        ->end();
         						
 

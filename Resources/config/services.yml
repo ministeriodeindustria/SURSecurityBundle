@@ -13,7 +13,7 @@ services:
 
     sur.security.authentication.listener:
         class: SUR\SecurityBundle\Security\Firewall\SURListener
-        arguments: ["@security.context", "@security.authentication.manager"]
+        arguments: ["@security.context", "@security.authentication.manager", '@service_container']
 
     controller_voter:
         class: SUR\SecurityBundle\Security\Authorization\Voter\ControllerVoter

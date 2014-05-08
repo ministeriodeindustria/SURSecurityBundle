@@ -8,16 +8,31 @@ use SUR\SecurityBundle\Security\Helper\DefaultAccessStrategy;
 class SURUser implements UserInterface, EquatableInterface
 {
 	private $username;
+	private $id;
+	private $codigoUsuario;
+	private $nroDocumento;
+	private $nombre;
+	private $apellido;
+	private $mail;
+	public $sistemaId;
 	private $roles;
 	private $menu;
 	private $accessStrategy;
 	
 	public function __construct($username, array $roles, $menu, $accessStrategy = NULL)
 	{
-		$this->username = $username;
+		$this->username = $user->usuIntraApellido . ', ' . $user->usuIntraNombre;
+		$this->apellido = $user->usuIntraApellido;
+		$this->nombre = $user->usuIntraNombre;
+		$this->mail = $user->usuIntraEmail;
+		$this->sistemaId = $user->sistemaId;
+		$this->codigoUsuario = $user->usuIntraUsuario;
+		$this->id = $user->usuIntraId;
+		$this->nroDocumento = $user->usuIntraNumDoc;
+
 		$this->roles = $roles;
 		$this->menu = $menu;
-		
+
 		$this->accessStrategy = $accessStrategy === NULL ? new DefaultAccessStrategy() : $accessStrategy;
 	}
 

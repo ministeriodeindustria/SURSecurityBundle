@@ -18,14 +18,15 @@ class SURListener implements ListenerInterface
 	{
 		$this->securityContext = $securityContext;
 		$this->authenticationManager = $authenticationManager;
+		$this->container = $container;
 	}
 
 	public function handle(GetResponseEvent $event)
 	{
 		$request = $event->getRequest();
 
-		if(!$request->query->has("token")  /*|| 
-			($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))*/){
+		if(!$request->query->has("token")  || 
+			($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))){
 			return;
 		}
 		
@@ -34,6 +35,9 @@ class SURListener implements ListenerInterface
 		try {
 			$authToken = $this->authenticationManager->authenticate($token);
 			$this->securityContext->setToken($authToken);
+
+			if ($authToken->getUser()->sistemaId != $this->container->getParameter('sistemaId'))
+				throw new AuthenticationException();
 
 			return;
 		} catch (AuthenticationException $failed) {
