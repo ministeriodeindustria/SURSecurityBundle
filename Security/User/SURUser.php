@@ -18,8 +18,8 @@ class SURUser implements UserInterface, EquatableInterface
 	private $roles;
 	private $menu;
 	private $accessStrategy;
-	
-	public function __construct($username, array $roles, $menu, $accessStrategy = NULL)
+
+	public function __construct($user, array $roles, $menu, $accessStrategy = NULL)
 	{
 		$this->username = $user->usuIntraApellido . ', ' . $user->usuIntraNombre;
 		$this->apellido = $user->usuIntraApellido;
@@ -53,7 +53,7 @@ class SURUser implements UserInterface, EquatableInterface
 
 	public function getPassword(){}
 	public function getSalt(){}
-	
+
 	public function eraseCredentials()
 	{
 	}
@@ -70,12 +70,12 @@ class SURUser implements UserInterface, EquatableInterface
 
 		return true;
 	}
-	
+
 
 	public function setAccessStrategy($accessStrategy){
 		$this->accessStrategy = $accessStrategy;
 	}
-	
+
 	public function getAccessStrategy(){
 		return $this->accessStrategy;
 	}
