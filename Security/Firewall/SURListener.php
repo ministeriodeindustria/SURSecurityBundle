@@ -31,12 +31,19 @@ class SURListener implements ListenerInterface
 		try {
 
 
-			if (!$request->query->has("token"))
-				return;
 
-		if(($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))){
-			if ($this->securityContext->getToken()->getUser()->sistemaId != $this->container->getParameter('sistemaId'))
-				throw new AuthenticationException();
+		if((!$request->query->has("token")) || ($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))){
+
+			if ($this->securityContext->getToken() != NULL)
+					if ($this->securityContext->getToken()->getUser()->sistemaId != $this->container->getParameter('sistemaId'))
+					{
+						if($request->query->has("token"))
+						$this->securityContext->setToken(null);
+							else
+						throw new AuthenticationException();
+
+					}
+				else
 			return;
 		}
 
