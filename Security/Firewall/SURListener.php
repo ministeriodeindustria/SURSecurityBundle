@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use SUR\SecurityBundle\Security\Authentication\Token\SURUserToken;
+use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 
@@ -28,34 +29,21 @@ class SURListener implements ListenerInterface
 	{
 		$request = $event->getRequest();
 
-		try {
-
-
-
-		if((!$request->query->has("token")) || ($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY'))){
-
-			if ($this->securityContext->getToken() != NULL)
-					if ($this->securityContext->getToken()->getUser()->sistemaId != $this->container->getParameter('sistemaId'))
-					{
-						if($request->query->has("token"))
-						$this->securityContext->setToken(null);
-							else
-						throw new AuthenticationException();
-
-					}
-				else
+		if($this->securityContext->getToken() != NULL && $this->securityContext->isGranted('IS_AUTHENTICATED_FULLY')){
+			if($this->securityContext->getToken()->getUser()->sistemaId == $this->container->getParameter('sistemaId')){
+				return;
+			}else if(!$request->query->has("token")){
+				throw new AuthenticationCredentialsNotFoundException('A new session was opened by another application.');
+			}
+		}else if(!$request->query->has("token")){
 			return;
 		}
+		
+		try {
 
-
-
-		$token = new SURUserToken("ANONIMO", $request->query->get("token"));
-		$authToken = $this->authenticationManager->authenticate($token);
-
+			$token = new SURUserToken("ANONIMO", $request->query->get("token"));
+			$authToken = $this->authenticationManager->authenticate($token);
 			$this->securityContext->setToken($authToken);
-
-
-
 
 			return;
 		} catch (AuthenticationException $failed) {
