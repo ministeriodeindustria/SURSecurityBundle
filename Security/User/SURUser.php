@@ -18,6 +18,7 @@ class SURUser implements UserInterface, EquatableInterface
 	private $roles;
 	private $menu;
 	private $accessStrategy;
+	private $empresa;
 
 	public function __construct($user, array $roles, $menu, $accessStrategy = NULL)
 	{
@@ -29,6 +30,7 @@ class SURUser implements UserInterface, EquatableInterface
 		$this->codigoUsuario = $user->usuIntraUsuario;
 		$this->id = $user->usuIntraId;
 		$this->nroDocumento = $user->usuIntraNumDoc;
+		$this->empresa = $user->empresa;
 
 		$this->roles = $roles;
 		$this->menu = $menu;
