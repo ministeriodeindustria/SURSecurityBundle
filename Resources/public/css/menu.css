@@ -100,7 +100,7 @@
   top: 100%;
   left: 0;
 }
-#cssmenu .has-sub ul li a, #cssmenu .has-sub ul li span {
+#cssmenu .has-sub ul li a {
   background: #606f7f;
   border-bottom: 1px solid #59636f;
   border-bottom: 1px solid #556371;
@@ -112,7 +112,27 @@
   line-height: 80%;
   padding: 15px 10px;
   font-size: 12px;
+
 }
+
+
+#cssmenu .has-sub ul li span {
+	background: #606f7f;
+  border-bottom: 1px solid #59636f;
+  border-bottom: 1px solid #556371;
+  box-shadow: inset 0 1px 0 #606f7f;
+  -moz-box-shadow: inset 0 1px 0 #606f7f;
+  -webkit-box-shadow: inset 0 1px 0 #606f7f;
+  color: white;
+  display: block;
+  line-height: 80%;
+  padding: 15px 10px;
+  font-size: 12px;
+  background-image: url('../images/hasSub.png');
+  background-repeat:no-repeat;
+  background-position: right;
+}
+
 #cssmenu .has-sub ul li:hover a, #cssmenu .has-sub ul li:hover span {
   background: #4a5662;
   box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.15);
@@ -140,3 +160,4 @@
   -moz-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, 0.15);
 }
+
