@@ -22,14 +22,14 @@ class SURUser implements UserInterface, EquatableInterface
 
 	public function __construct($user, array $roles, $menu, $accessStrategy = NULL)
 	{
-		$this->username = $user->usuIntraApellido . ', ' . $user->usuIntraNombre;
-		$this->apellido = $user->usuIntraApellido;
-		$this->nombre = $user->usuIntraNombre;
-		$this->mail = $user->usuIntraEmail;
+		$this->username = $user->usuApellido . ', ' . $user->usuNombre;
+		$this->apellido = $user->usuApellido;
+		$this->nombre = $user->usuNombre;
+		$this->mail = $user->usuEmail;
 		$this->sistemaId = $user->sistemaId;
-		$this->codigoUsuario = $user->usuIntraUsuario;
-		$this->id = $user->usuIntraId;
-		$this->nroDocumento = $user->usuIntraNumDoc;
+		$this->codigoUsuario = $user->usuUsuario;
+		$this->id = $user->usuId;
+		$this->nroDocumento = $user->usuNumDoc;
 		$this->empresa = $user->empresa;
 
 		$this->roles = $roles;
