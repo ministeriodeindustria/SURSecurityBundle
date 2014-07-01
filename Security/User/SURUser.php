@@ -81,4 +81,30 @@ class SURUser implements UserInterface, EquatableInterface
 	public function getAccessStrategy(){
 		return $this->accessStrategy;
 	}
+	public function getId(){
+		return $this->id;
+	}
+
+	public function getCodigoUsuario(){
+		return $this->codigoUsuario;
+	}
+
+	public function getNroDocumento(){
+		return $this->nroDocumento;
+	}
+	public function getNombre(){
+		return $this->nombre;
+	}
+	public function getApellido(){
+		return $this->apellido;
+	}
+	public function getMail(){
+		return $this->mail;
+	}
+	public function getSistemaId(){
+		return $this->sistemaId;
+	}
+	public function getEmpresa(){
+		return $this->empresa;
+	}
 }
