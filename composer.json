@@ -13,11 +13,11 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "besimple/soap-bundle" : "dev-master@dev",
-		"besimple/soap-common" : "dev-master@dev",
-		"ass/xmlsecurity" : "dev-master@dev",
-		"besimple/soap-client" : "dev-master@dev",
-		"knplabs/knp-menu-bundle": "dev-master@dev"
+        "besimple/soap-bundle" : "0.2.*@dev",
+		"besimple/soap-common" : "0.2.*@dev",
+		"ass/xmlsecurity" : "1.0.*@dev",
+		"besimple/soap-client" : "0.2.*@dev",
+		"knplabs/knp-menu-bundle": "2.0.*@dev"
     },
     "require-dev": {
         "symfony/framework-bundle": ">=2.1,<2.2-dev"
