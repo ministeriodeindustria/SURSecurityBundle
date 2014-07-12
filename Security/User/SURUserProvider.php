@@ -25,8 +25,14 @@ class SURUserProvider implements UserProviderInterface
 		if($respuesta->status==$respuesta->OK){
 
 			$item = $respuesta->user->privilegios;
-			if (isset($item->item))
-				$roles = $item->item;
+			if (isset($item->item)){
+				if(is_array($item->item))
+					$roles = $item->item;
+				else{
+					$roles = array();
+					$roles[] = $item->item;
+				} 
+			}
 	 		else
 	 			$roles = array();
 	 		//TODO obtener los Roles del Usuario
