@@ -23,13 +23,14 @@ Pasos para configurar el SURSecurityBundle:
 	sur_security:
 		login_url: "%login_url%"
 		ws_url: "%ws_url%"
+		sistema_id: "%sistemaId%"
 	
 		
 ##### 5- En parameters.yml agregar:
 	
 	login_url: 'http://localhost/sur/intranet/index.php'
 	ws_url: 'http://localhost/industriaws/web/app_dev.php/ws/SURAuthentication'
-	
+	sistemaId: 9000
     
 ##### 6- En routing.yml agregar:
 
